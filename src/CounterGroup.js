@@ -25,10 +25,13 @@ class CounterGroup extends Component {
   }
 
   onChange(event) {
-    const value = event.target.value;
-    this.setState({
-      size: value.length > 0 ? parseInt(value) : 0,
-      sum: COUNTER_GROUP_INIT_SUM,
+    //const value = event.target.value;
+    CounterApi.putCounterSize(event.target.value).then((response) => {
+      const size = response.data.size;
+      this.setState({
+        size: size,
+        sum: COUNTER_GROUP_INIT_SUM,
+      });
     });
   }
 
@@ -66,7 +69,6 @@ class CounterGroup extends Component {
             <p>
               sum of all counters value is <mark>{this.state.sum}</mark>
             </p>
-            
           </fieldset>
         </form>
         {counters.map((value) => (

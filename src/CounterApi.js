@@ -1,10 +1,13 @@
 import axios from "axios";
+import { COUNTER_API_URL } from "./constants/constants";
 
-class CounterApi{
-    static getCounterSize(){
-        const COUNTER_API_URL = "https://5e9ed3a0fb467500166c47b3.mockapi.io/counters";
-        return axios.get(COUNTER_API_URL);
-    }
+class CounterApi {
+  static getCounterSize() {
+    return axios.get(COUNTER_API_URL);
+  }
+  static putCounterSize(inputSize) {
+    return axios.put(COUNTER_API_URL + '/'+ inputSize);
+  }
 }
 
 export default CounterApi;
