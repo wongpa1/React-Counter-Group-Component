@@ -1,4 +1,7 @@
+import 'antd/dist/antd.css';
 import React, { Component } from "react";
+import {Button} from "antd";
+import { MinusOutlined, PlusOutlined } from '@ant-design/icons';
 import {
   COUNTER_INCREMENT,
   COUNTER_DECREMENT,
@@ -40,9 +43,9 @@ class Counter extends Component {
   render() {
     return (
       <div>
-        <button onClick={this.onIncrease}>+</button>
-        <span>{this.state.number}</span>
-        <button onClick={this.onDecrease}>-</button>
+        <Button type="primary" shape="circle" icon={<PlusOutlined />} onClick={this.onIncrease}/>
+        <span> {this.state.number} </span>
+        <Button type="primary" shape="circle" icon={<MinusOutlined />} onClick={this.onDecrease}/>
       </div>
     );
   }

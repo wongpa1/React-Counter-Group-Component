@@ -1,6 +1,8 @@
+import 'antd/dist/antd.css';
 import React, { Component } from "react";
 import Counter from "./Counter";
 import CounterApi from "./CounterApi";
+import { Form, Input, Card, Space } from "antd";
 import {
   INIT_COUNTER_SIZE,
   COUNTER_GROUP_INIT_SUM,
@@ -56,10 +58,10 @@ class CounterGroup extends Component {
     let counters = this.initArray(this.state.size);
     return (
       <div>
-        <form onSubmit={this.onSubmit}>
+        <Form onSubmit={this.onSubmit}>
           <fieldset>
-            <label htmlFor="size">Generate</label>
-            <input
+            <label htmlFor="size">Generate </label>
+            <Input
               name="size"
               placeholder="input size here..."
               onChange={this.onChange}
@@ -67,16 +69,21 @@ class CounterGroup extends Component {
             />
             <span> Counters</span>
             <p>
-              sum of all counters value is <mark>{this.state.sum}</mark>
+              Sum of all counters value is <mark>{this.state.sum}</mark>
             </p>
           </fieldset>
-        </form>
+        </Form>
+        <Space />
         {counters.map((value) => (
-          <Counter
-            key={value}
-            size={this.state.size}
-            onCalculate={this.onCalculate}
-          />
+          <Card>
+            <p>
+              <Counter
+                key={value}
+                size={this.state.size}
+                onCalculate={this.onCalculate}
+              />
+            </p>
+          </Card>
         ))}
       </div>
     );
