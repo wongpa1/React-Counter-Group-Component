@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Counter from "./Counter";
+import CounterApi from "./CounterApi";
 import {
   INIT_COUNTER_SIZE,
   COUNTER_GROUP_INIT_SUM,
@@ -41,6 +42,13 @@ class CounterGroup extends Component {
     });
   }
 
+  componentDidMount() {
+    CounterApi.getCounterSize().then((response) => {
+      const size = response.data.size;
+      this.setState({ size: size });
+    });
+  }
+
   render() {
     let counters = this.initArray(this.state.size);
     return (
@@ -58,6 +66,7 @@ class CounterGroup extends Component {
             <p>
               sum of all counters value is <mark>{this.state.sum}</mark>
             </p>
+            
           </fieldset>
         </form>
         {counters.map((value) => (
